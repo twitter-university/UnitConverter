@@ -52,7 +52,8 @@ public class UnitConverterActivity extends Activity implements
 		this.initSpinners(0);
 	}
 
-	public void onItemSelected(AdapterView<?> parent, View view, int position,
+	@Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
 		if (parent == category) {
 			Log.d(TAG, "Changing category to position " + position);
@@ -65,11 +66,13 @@ public class UnitConverterActivity extends Activity implements
 		}
 	}
 
-	public void onNothingSelected(AdapterView<?> parent) {
+	@Override
+    public void onNothingSelected(AdapterView<?> parent) {
 		// ignored
 	}
 
-	public void onClick(View view) {
+	@Override
+    public void onClick(View view) {
 		if (view == this.reverseUnits) {
 			int inputUnitPosition = this.inputUnit.getSelectedItemPosition();
 			this.inputUnit.setSelection(this.outputUnit
@@ -124,34 +127,37 @@ public class UnitConverterActivity extends Activity implements
 		this.outputAmount.setText(outputString);
 	}
 
-	private int getCategoryArrayResId(int category) {
-		return UnitConversionCategory.values()[category].getArrayResourceId();
+	private int getCategoryArrayResId(int cat) {
+		return UnitConversionCategory.values()[cat].getArrayResourceId();
 	}
 
-	private UnitConverter getUnitConverter(int category, int unitSelection) {
-		return UnitConversionCategory.values()[category]
+	private UnitConverter getUnitConverter(int cat, int unitSelection) {
+		return UnitConversionCategory.values()[cat]
 				.getUnitConverter(unitSelection);
 	}
 
-	private void initSpinners(int category) {
+	private void initSpinners(int cat) {
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-				this, this.getCategoryArrayResId(category),
+				this, this.getCategoryArrayResId(cat),
 				android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		this.inputUnit.setAdapter(adapter);
 		this.outputUnit.setAdapter(adapter);
 	}
 
-	public void afterTextChanged(Editable s) {
+	@Override
+    public void afterTextChanged(Editable s) {
 		this.recalculate();
 	}
 
-	public void beforeTextChanged(CharSequence s, int start, int count,
+	@Override
+    public void beforeTextChanged(CharSequence s, int start, int count,
 			int after) {
 		// ignored
 	}
 
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
+	@Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
 		// ignored
 	}
 }

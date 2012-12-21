@@ -50,9 +50,11 @@ public enum LengthConverter implements UnitConverter {
 		}
 
 	};
-	public abstract double toBaseUnit(double amount);
-	
-	public double toUnit(double baseUnitAmount) {
+	@Override
+    public abstract double toBaseUnit(double amount);
+
+	@Override
+    public double toUnit(double baseUnitAmount) {
 		return baseUnitAmount * (1 / (toBaseUnit(1)));
 	}
 }

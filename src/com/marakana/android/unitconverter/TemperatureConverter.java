@@ -35,7 +35,10 @@ public enum TemperatureConverter implements UnitConverter {
 			return baseUnitAmount + 273.15;
 		}
 	};
-	public abstract double toBaseUnit(double amount);
 
-	public abstract double toUnit(double baseUnitAmount);
+	@Override
+    public abstract double toBaseUnit(double amount);
+
+	@Override
+    public abstract double toUnit(double baseUnitAmount);
 }
